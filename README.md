@@ -1,10 +1,14 @@
-Multi-Agent Educational Copilot 🤖🎓Operationalizing Agentic AI in Education through Role-Specialized Orchestration.📌 OverviewCurrent educational AI often relies on "monolithic" prompts that struggle with long-term pedagogical consistency. This project translates theoretical Agentic AI frameworks (as defined in Kostopoulos et al., 2025) into a practical, algorithm-driven architecture.By utilizing a Multi-Agent System (MAS), the Copilot dynamically adapts instructional strategies based on real-time Learning-State Estimation, moving beyond simple chat-based wrappers into a proactive educational tool.🏗️ ArchitectureThe system consists of four specialized agents coordinated by a central orchestration layer:Planner Agent: Manages curriculum flow and sets learning objectives.Tutor Agent: Provides interactive scaffolding and instructional support.Evaluator Agent: Conducts real-time assessment and mastery verification.Coach Agent: Monitors engagement and provides motivational interventions.Key Mechanisms:Learning-State Estimation: Classifies learner signals into states: Confusion, Progression, or Mastery.Conflict Resolution: Ensures cohesive feedback by mediating between agent-specific goals.Long-Term Memory: Persistent state management via Firebase for cross-session continuity.🛠️ Tech StackLayerTechnologyFrontendReact.jsBackendFastAPIOrchestrationLangChainIntelligenceGemini APIDatabaseFirebaseCloud/DevOpsAWS🚀 Getting StartedPrerequisitesPython 3.9+Node.js & npmGemini API KeyInstallationClone the repository:Bashgit clone https://github.com/your-username/multi-agent-edu-copilot.git
-cd multi-agent-edu-copilot
-Backend Setup:Bashcd backend
-pip install -r requirements.txt
-# Create a .env file and add your GEMINI_API_KEY
-uvicorn main:app --reload
-Frontend Setup:Bashcd ../frontend
-npm install
-npm start
-📊 Experimental ResultsOur evaluation against a single-agent baseline shows:40% Improvement in instructional consistency.Significant increase in learning efficiency via proactive scaffolding.Enhanced coherence in multi-turn pedagogical dialogues.)📄 LicenseThis project is licensed under the MIT License - see the LICENSE file for details.📚 ReferencesKostopoulos, G., et al. (2025). Agentic AI in Education: State of the Art and Future Directions. IEEE Access.
+About the Project: Multi-Agent Educational Copilot
+This project addresses a major limitation in current Educational AI: monolithic prompting. Standard AI tutors often lose track of their pedagogical role or give away answers too easily because they operate as a single, general-purpose chatbot.
+
+Our solution is a Multi-Agent System (MAS) that breaks the "teacher" role into four specialized agents:
+
+Planner Agent: Manages the learning path and curriculum.
+
+Tutor Agent: Provides hints and interactive scaffolding.
+
+Evaluator Agent: Assesses student performance and checks for mastery.
+
+Coach Agent: Monitors frustration and provides emotional/motivational support.
+
+By using Learning-State Estimation, the system identifies if a student is Confused, Progressing, or Mastering a topic and triggers the correct agent to intervene. This ensures a consistent, professional, and adaptive learning experience.
