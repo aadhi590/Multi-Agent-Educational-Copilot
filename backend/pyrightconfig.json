@@ -1,20 +1,22 @@
 {
-    "venvPath": ".",
-    "venv": "venv",
-    "pythonVersion": "3.13",
-    "pythonPlatform": "Windows",
     "include": [
         "."
     ],
-    "extraPaths": [
-        "."
-    ],
     "exclude": [
-        "venv",
-        "__pycache__",
-        "*.pyc"
+        "**/node_modules",
+        "**/__pycache__"
     ],
-    "typeCheckingMode": "basic",
-    "reportMissingImports": "error",
-    "reportMissingModuleSource": "none"
+    "venvPath": ".",
+    "venv": "venv",
+    "executionEnvironments": [
+        {
+            "root": ".",
+            "pythonVersion": "3.10",
+            "extraPaths": [
+                "."
+            ]
+        }
+    ],
+    "reportMissingImports": "warning",
+    "reportMissingTypeStubs": false
 }

@@ -14,7 +14,8 @@ import re
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.messages import SystemMessage, HumanMessage
 from dotenv import load_dotenv
-from ml.sentiment import analyze_sentiment, update_frustration_with_decay
+from knowledge_store.ml.sentiment import analyze_sentiment, update_frustration_with_decay
+from .utils import extract_text
 
 load_dotenv()
 
@@ -80,7 +81,7 @@ def _extract_json(text: str) -> dict:
 class MetaAgent:
     def __init__(self):
         self.llm = ChatGoogleGenerativeAI(
-            model="gemini-2.0-flash",   # fast, cheap model for routing
+            model="gemini-2.5-pro",   # high reasoning model for classification
             google_api_key=os.getenv("GEMINI_API_KEY"),
             temperature=0.1,            # low temp for consistent JSON
         )
@@ -112,7 +113,7 @@ class MetaAgent:
                 SystemMessage(content=META_SYSTEM_PROMPT),
                 HumanMessage(content=conversation_summary),
             ])
-            analysis = _extract_json(llm_response.content)
+            analysis = _extract_json(extract_text(llm_response.content))
         except Exception as e:
             print(f"[MetaAgent] LLM error: {e}, using ML-only fallback")
             analysis = {

@@ -5,6 +5,7 @@ from typing import Tuple, List, Dict, Any
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.messages import SystemMessage, HumanMessage
 from dotenv import load_dotenv
+from .utils import extract_text
 
 load_dotenv()
 
@@ -23,7 +24,7 @@ def _get_last_human_text(state) -> str:
 class PlannerAgent:
     def __init__(self):
         self.llm = ChatGoogleGenerativeAI(
-            model="gemini-2.5-flash",
+            model="gemini-pro-latest",
             google_api_key=os.getenv("GEMINI_API_KEY"),
             temperature=0.5,
         )
@@ -76,7 +77,7 @@ class PlannerAgent:
             HumanMessage(content=human_input),
         ])
 
-        response_text = response.content
+        response_text = extract_text(response.content)
 
         # Extract updated objectives from JSON block
         new_objectives = remaining[:]  # default: keep existing

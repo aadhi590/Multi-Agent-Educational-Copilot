@@ -2,6 +2,7 @@ import os
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.messages import SystemMessage, HumanMessage
 from dotenv import load_dotenv
+from .utils import extract_text
 
 load_dotenv()
 
@@ -21,7 +22,7 @@ def _get_last_human_text(state) -> str:
 class CoachAgent:
     def __init__(self):
         self.llm = ChatGoogleGenerativeAI(
-            model="gemini-2.5-flash",
+            model="gemini-2.5-pro",
             google_api_key=os.getenv("GEMINI_API_KEY"),
             temperature=0.8,  # more creative/warm for coaching
         )
@@ -87,7 +88,7 @@ class CoachAgent:
             SystemMessage(content=system_text),
             HumanMessage(content=human_input),
         ])
-        return response.content
+        return extract_text(response.content)
 
 
 def _build_attempt_summary(state: dict) -> str:
