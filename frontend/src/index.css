@@ -28,11 +28,14 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background-image:
-    radial-gradient(circle at 0% 0%, rgba(16, 185, 129, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 100% 100%, rgba(5, 150, 105, 0.15) 0%, transparent 50%);
   background-color: #f8fafc;
+  background-image: 
+    radial-gradient(circle at 15% 50%, rgba(16, 185, 129, 0.08) 0%, transparent 25%),
+    radial-gradient(circle at 85% 30%, rgba(20, 184, 166, 0.08) 0%, transparent 25%),
+    linear-gradient(135deg, rgba(248, 250, 252, 1) 0%, rgba(241, 245, 249, 1) 100%);
+  background-size: 200% 200%;
   background-attachment: fixed;
+  animation: gradientBG 15s ease infinite;
 }
 
 #root {
@@ -41,19 +44,25 @@ body {
 
 /* Glassmorphism utility */
 .glass {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 1);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
 }
 
 .glass-card {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  border-radius: 1rem;
-  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 1.25rem;
+  box-shadow: 0 10px 40px -10px rgba(16, 185, 129, 0.08), 0 4px 12px rgba(0, 0, 0, 0.03);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 45px -10px rgba(16, 185, 129, 0.15), 0 6px 15px rgba(0, 0, 0, 0.05);
 }
 
 /* Custom scrollbar */
@@ -86,13 +95,27 @@ body {
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(15px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.hover-lift {
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 25px -5px rgba(16, 185, 129, 0.2);
 }
 
 .animate-fade-in {
